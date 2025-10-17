@@ -1,0 +1,60 @@
+AIM:Develop a program in c to implement Bank Account Information using (memmory optimization).
+program:
+        #include <stdio.h>
+#include <string.h>
+
+typedef struct {
+    unsigned int accType : 2;  
+    unsigned int active  : 1; 
+} Status;
+union AccountDetails {
+    float interestRate; 
+float overdraftLimit; 
+};
+
+struct BankAccount {
+    int accNo;
+    char name[50];
+    float balance;
+    Status stat;
+    union AccountDetails details;
+};
+
+int main() {
+    struct BankAccount acc;
+
+    printf("Enter Account Number: ");
+    scanf("%d", &acc.accNo);
+
+    printf("Enter Name: ");
+    scanf(" %[^\n]", acc.name);
+
+    printf("Enter Balance: ");
+    scanf("%f", &acc.balance);
+
+    printf("Enter Account Type (0 for Savings / 1 for Current): ");
+    scanf("%u", &acc.stat.accType);
+
+    acc.stat.active = 1; 
+
+    if (acc.stat.accType == 0) {
+        printf("Enter Interest Rate: ");
+        scanf("%f", &acc.details.interestRate);
+    } else {
+        printf("Enter Overdraft Limit: ");
+        scanf("%f", &acc.details.overdraftLimit);
+    }
+
+    printf("\n--- Bank Account Information ---\n");
+    printf("Account No: %d\n", acc.accNo);
+    printf("Name: %s\n", acc.name);
+    printf("Balance: %.2f\n", acc.balance);
+    printf("Status: %s\n", acc.stat.active ? "Active" : "Inactive");
+
+    if (acc.stat.accType == 0)
+        printf("\nAccount Type: Savings\nInterest Rate: %.2f%%\n", acc.details.interestRate);
+    else
+        printf("\nAccount Type: Current\nOverdraft Limit: %.2f\n", acc.details.overdraftLimit);
+
+    return 0;
+}
