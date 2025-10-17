@@ -1,0 +1,33 @@
+AIM:Develop a program in c to conversion from Roman to Integer.
+program:
+         #include <stdio.h>
+
+int val(char c) {
+    if (c == 'I') return 1;
+    if (c == 'V') return 5;
+    if (c == 'X') return 10;
+    if (c == 'L') return 50;
+    if (c == 'C') return 100;
+    if (c == 'D') return 500;
+    if (c == 'M') return 1000;
+    return 0;
+}
+
+int main() {
+    char s[20];
+    int i = 0, result = 0;
+    scanf("%s", s);
+    while (s[i]) {
+        int current = val(s[i]);
+        int next = val(s[i+1]);
+        if (next > current) {
+            result += (next - current);
+            i += 2;
+        } else {
+            result += current;
+            i++;
+        }
+    }
+    printf("%d\n", result);
+    return 0;
+}
