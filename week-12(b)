@@ -1,0 +1,26 @@
+AIM:Develop a program in c using static to track recursion depth without using global variables.
+program:
+         #include <stdio.h>
+
+void recursiveFunction(int n) {
+    static int depth = 0;  
+
+    depth++;  
+    printf("Entering level %d (n = %d)\n", depth, n);
+
+    if (n > 1)
+        recursiveFunction(n - 1);  
+
+    printf("Exiting level %d (n = %d)\n", depth, n);
+    depth--; 
+}
+
+int main() {
+    int num;
+    printf("Enter a number: ");
+    scanf("%d", &num);
+
+    recursiveFunction(num);
+
+    return 0;
+}
