@@ -1,0 +1,31 @@
+AIM:Develop a program in c to implement left rotate an array by one position.
+program:
+        #include <stdio.h>
+
+int main() {
+    int arr[50], n, i, temp;
+
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+
+    printf("Enter elements of the array:\n");
+    for(i = 0; i < n; i++)
+        scanf("%d", &arr[i]);
+
+    
+    temp = arr[0];
+
+  
+    for(i = 0; i < n - 1; i++)
+        arr[i] = arr[i + 1];
+
+  
+    arr[n - 1] = temp;
+
+    printf("\nArray after left rotation by one position:\n");
+    for(i = 0; i < n; i++)
+        printf("%d ", arr[i]);
+
+    printf("\n");
+    return 0;
+}
